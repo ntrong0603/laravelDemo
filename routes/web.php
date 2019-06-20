@@ -55,4 +55,8 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('sua', 'UserController@getSua');
         Route::get('them', 'UserController@getThem');
     });
+
+    Route::group(['prefix' => 'ajax'], function () {
+        Route::get('loaitin/{idTheLoai?}', 'AjaxController@getLoaiTin')->name('getLoaiTinId');
+    });
 });

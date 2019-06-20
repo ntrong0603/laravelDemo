@@ -3,9 +3,9 @@ CKEDITOR.editorConfig = function( config )
 {
         // Define changes to default configuration here. For example:
     config.language = 'en';
-    
+
         // config.uiColor = '#AADC6E';
-        
+
         config.toolbar_Full = [
             ['Source','-','Save','NewPage','Preview','-','Templates'],
             ['Cut','Copy','Paste','PasteText','PasteFromWord','-','Print', 'SpellChecker', 'Scayt'],
@@ -22,21 +22,21 @@ CKEDITOR.editorConfig = function( config )
             ['TextColor','BGColor'],
             ['Maximize', 'ShowBlocks','-','About']
             ];
-        
+
         config.entities = false;
         //config.entities_latin = false;
-        
 
-        config.filebrowserBrowseUrl = 'http://localhost/fckeditor/ckfinder/ckfinder.html';
 
-        config.filebrowserImageBrowseUrl = 'http://localhost/fckeditor/ckfinder/ckfinder.html?type=Images';
+        config.filebrowserBrowseUrl = 'upload/';
 
-        config.filebrowserFlashBrowseUrl = 'http://localhost/fckeditor/ckfinder/ckfinder.html?type=Flash';
+        config.filebrowserImageBrowseUrl = 'upload/';
 
-        config.filebrowserUploadUrl = 'http://localhost/fckeditor/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files';
+        config.filebrowserFlashBrowseUrl = 'upload/';
 
-        config.filebrowserImageUploadUrl = 'http://localhost/fckeditor/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images';
+        config.filebrowserUploadUrl = 'upload/';
 
-        config.filebrowserFlashUploadUrl = 'http://localhost/fckeditor/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash';
+        config.filebrowserImageUploadUrl = 'upload/';
 
-};  
+        config.filebrowserFlashUploadUrl = 'upload/';
+
+};

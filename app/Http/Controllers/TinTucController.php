@@ -10,17 +10,21 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Model\TinTuc;
+use App\Model\TheLoai;
+use App\Model\LoaiTin;
 
 class TinTucController extends Controller
 {
     /**
-     * Show the list the category
+     * Show the list the product
      *
      * @return View
      */
     public function getDanhSach()
     {
-        return view('admin.tintuc.danhsach');
+        $items = TinTuc::orderby('id', 'DESC')->get();
+        return view('admin.tintuc.danhsach', ['items' => $items]);
     }
 
     /**
@@ -30,7 +34,9 @@ class TinTucController extends Controller
      */
     public function getThem()
     {
-        return view('admin.tintuc.them');
+        $theLoai = TheLoai::all();
+        $loaiTin = LoaiTin::all();
+        return view('admin.tintuc.them', ['theLoai' => $theLoai, 'loaiTin' => $loaiTin]);
     }
 
     /**

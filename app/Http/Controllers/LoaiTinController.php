@@ -10,8 +10,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\LoaiTin;
-use App\TheLoai;
+use App\Model\LoaiTin;
+use App\Model\TheLoai;
 
 class LoaiTinController extends Controller
 {

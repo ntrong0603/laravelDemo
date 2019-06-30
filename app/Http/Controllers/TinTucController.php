@@ -204,7 +204,7 @@ class TinTucController extends Controller
     {
         // get object
         $item = TinTuc::find($id);
-
+        unlink("upload/tintuc/" . $item->Hinh);
         // delete object
         $item->delete();
 

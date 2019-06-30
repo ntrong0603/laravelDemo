@@ -4,8 +4,8 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">Category
-                    <small>List</small>
+                <h1 class="page-header">User
+                    <small>Danh Sách</small>
                 </h1>
             </div>
             <!-- /.col-lg-12 -->
@@ -14,29 +14,31 @@
                     <tr align="center">
                         <th>ID</th>
                         <th>Name</th>
-                        <th>Category Parent</th>
-                        <th>Status</th>
+                        <th>Email</th>
+                        <th>Level</th>
                         <th>Delete</th>
                         <th>Edit</th>
                     </tr>
                 </thead>
                 <tbody>
+                    @foreach ($items as $item)
                     <tr class="odd gradeX" align="center">
-                        <td>1</td>
-                        <td>Tin Tức</td>
-                        <td>None</td>
-                        <td>Hiện</td>
-                        <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="#"> Delete</a></td>
-                        <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="#">Edit</a></td>
+                        <td>{{ $item->id }}</td>
+                        <td>{{ $item->name }}</td>
+                        <td>{{ $item->email }}</td>
+                        <td>
+                            @if ($item->quyen === 1)
+                            {{ 'Amind' }}
+                            @else
+                            {{ 'Thường' }}
+                            @endif
+                        </td>
+                        <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="admin/user/xoa/{{ $item->id }}">
+                                Delete</a></td>
+                        <td class="center"><i class="fa fa-pencil fa-fw"></i> <a
+                                href="admin/user/sua/{{ $item->id }}">Edit</a></td>
                     </tr>
-                    <tr class="even gradeC" align="center">
-                        <td>2</td>
-                        <td>Bóng Đá</td>
-                        <td>Thể Thao</td>
-                        <td>Ẩn</td>
-                        <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="#"> Delete</a></td>
-                        <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="#">Edit</a></td>
-                    </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>

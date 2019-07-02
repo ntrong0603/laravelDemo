@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Controllers UserController
  *
@@ -7,6 +8,7 @@
  * @copyright  Copyright (c) 2019 Le Ngoc Trong. All Rights Reserved.
  * @author     Le Trong<ntrong0603.dgt@gmail.com>
  */
+
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -79,8 +81,97 @@ class UserController extends Controller
      *
      * @return View
      */
-    public function getSua()
+    public function getSua($id)
     {
-        return view('admin.user.sua');
+        $user = User::find($id);
+        return view('admin.user.sua', ['item' => $user]);
+    }
+
+    /**
+     * Save the form the user
+     *
+     * @param  Request  $request
+     * @return redirect admin/user/sua
+     */
+    public function postSua(Request $request, $id)
+    {
+        // use validate check value
+        $this->validate(
+            $request,
+            [
+                'name'          => 'required|min:6',
+                'passwordAgain' => 'same:password'
+            ],
+            [
+                'name.required'             => 'Bạn chưa nhập tên',
+                'name.min'                  => 'Tên ít nhất 6 ký tự',
+                'passwordAgain.same'        => 'Mật khẩu nhập lại không khớp'
+            ]
+        );
+        $user           = User::find($id);
+        $user->name     = $request->name;
+        $user->email    = $request->email;
+        $user->quyen    = $request->quyen;
+
+        if ($request->changePassword == "on") {
+            $this->validate(
+                $request,
+                [
+
+                    'password'      => 'required|min:6|max:32',
+                    'passwordAgain' => 'required|same:password'
+                ],
+                [
+                    'password.required'         => 'Bạn chưa nhập password',
+                    'password.min'              => 'Mật khẩu ít nhất 6 ký tự',
+                    'password.max'              => 'Mật khẩu nhiều nhất 32 ký tự',
+                    'passwordAgain.required'    => 'Bạn chưa nhập lại mật khẩu',
+                    'passwordAgain.same'        => 'Mật khẩu nhập lại không khớp'
+                ]
+            );
+            $user->password = bcrypt($request->password);
+        }
+
+        $user->save();
+
+        return redirect('admin/user/sua/' . $user->id)->with('thongbao', 'Sửa thành công');
+    }
+
+    /**
+     * Remove the user
+     *
+     * @param  int $id  $request
+     * @return redirect admin/user/danhsach
+     */
+    public function getXoa($id)
+    {
+        $user = User::find($id);
+        $comments = $user->comment;
+        //delete comment user
+        foreach ($comments as $comment) {
+            $comment->delete();
+        }
+        $user->delete();
+
+        return redirect('admin/user/danhsach')->with('thongbao', 'Xóa thành công');
+    }
+    /**
+     * Process login the user
+     *
+     * @return redirect admin/login
+     */
+    public function getDangNhapAdmin()
+    {
+        return view('admin.login');
+    }
+    /**
+     * Process login the user
+     *
+     * @param  Request $request  $request
+     * @return void
+     */
+    public function postDangNhapAdmin()
+    {
+        //
     }
 }

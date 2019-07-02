@@ -8,6 +8,11 @@
                     <small>Danh Sách</small>
                 </h1>
             </div>
+            @if (session('thongbao'))
+            <div class="alert alert-success">
+                {{ session('thongbao') }}
+            </div>
+            @endif
             <!-- /.col-lg-12 -->
             <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                 <thead>

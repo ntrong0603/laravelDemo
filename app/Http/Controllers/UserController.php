@@ -13,6 +13,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Model\User;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -167,11 +168,39 @@ class UserController extends Controller
     /**
      * Process login the user
      *
-     * @param  Request $request  $request
+     * @param  Request $request
      * @return void
      */
-    public function postDangNhapAdmin()
+    public function postDangNhapAdmin(Request $request)
     {
-        //
+        $this->validate(
+            $request,
+            [
+                'email' => 'required',
+                'password' => 'required|min:6|max:32'
+            ],
+            [
+                'email.required' => 'Bạn chưa nhập địa chỉ email',
+                'password.required' => 'Bạn chưa nhập password',
+                'password.min' => 'Password tối thiểu 6 ký tự',
+                'password.max' => 'Password tối đa 32 ký tự'
+            ]
+        );
+        if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
+            return redirect('admin/theloai/danhsach');
+        } else {
+            return redirect('admin/dangnhap')->with('thongbao', 'Đăng nhập không thành công');
+        }
+    }
+
+    /**
+     * Process logout admin
+     */
+    public function getDangXuatAdmin()
+    {
+        if (Auth::check()) {
+            Auth::logout();
+            return redirect('admin/dangnhap');
+        }
     }
 }

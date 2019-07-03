@@ -21,13 +21,8 @@
                     @endif
 
                     @if (session('thongbao'))
-                    <div class="alert alert-success">
-                        {{ session('thongbao') }}
-                    </div>
-                    @endif
-                    @if (session('loi'))
                     <div class="alert alert-danger">
-                        {{ session('loi') }}
+                        {{ session('thongbao') }}
                     </div>
                     @endif
                     <div class="form-group">

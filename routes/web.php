@@ -15,8 +15,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('admin/dangnhap', 'userController@getDangNhapAdmin');
-Route::post('admin/dangnhap', 'userController@postDangNhapAdmin');
+Route::get('admin/dangnhap', 'UserController@getDangNhapAdmin');
+Route::post('admin/dangnhap', 'UserController@postDangNhapAdmin');
+Route::get('admin/logout', 'UserController@getDangXuatAdmin');
 
 Route::group(['prefix' => 'admin'], function () {
     Route::group(['prefix' => 'theloai'], function () {

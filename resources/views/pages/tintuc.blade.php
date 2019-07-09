@@ -29,29 +29,34 @@
 
             <hr>
 
-            <!-- Blog Comments -->
 
+            @if (isset($nguoiDung))
+            <!-- Blog Comments -->
             <!-- Comments Form -->
             <div class="well">
                 <h4>Viết bình luận ...<span class="glyphicon glyphicon-pencil"></span></h4>
-                <form role="form">
+                <form action="comment/{{ $tinTuc->id}}" method="POST" role="form">
+                    @csrf
                     <div class="form-group">
-                        <textarea class="form-control" rows="3"></textarea>
+                        <textarea class="form-control" name="NoiDung" rows="3"></textarea>
                     </div>
                     <button type="submit" class="btn btn-primary">Gửi</button>
                 </form>
             </div>
-
             <hr>
 
             <!-- Posted Comments -->
+            @endif
+
+
+
 
             <!-- Comment -->
             @foreach ($tinTuc->comment as $item)
             <div class="media">
-                <!--<a class="pull-left" href="#">
+                <a class="pull-left" href="#">
                     <img class="media-object" src="http://placehold.it/64x64" alt="">
-                </a>-->
+                </a>
                 <div class="media-body">
                     <h4 class="media-heading">{{ $item->user->name }}
                         <small>{{ $item->created_at }}</small>

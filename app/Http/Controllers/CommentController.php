@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Controllers CommentController
  *
@@ -7,10 +8,12 @@
  * @copyright  Copyright (c) 2019 Le Ngoc Trong. All Rights Reserved.
  * @author     Le Trong<ntrong0603.dgt@gmail.com>
  */
+
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Model\Comment;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CommentController extends Controller
 {
@@ -30,5 +33,19 @@ class CommentController extends Controller
         $item->delete();
 
         return redirect('admin/tintuc/sua/' . $idTinTuc)->with('thongbao', 'Xóa comment thành công');
+    }
+
+    public function postComment($id, Request $request)
+    {
+        $idTinTuc = $id;
+        $comment = new Comment;
+
+        $comment->idTinTuc = $idTinTuc;
+        $comment->idUser = Auth::user()->id;
+        $comment->NoiDung = $request->NoiDung;
+
+        $comment->save();
+
+        return back();
     }
 }

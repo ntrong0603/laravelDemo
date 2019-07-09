@@ -112,4 +112,5 @@ class PageController extends Controller
             return back();
         }
     }
+
 }

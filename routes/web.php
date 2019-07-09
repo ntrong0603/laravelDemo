@@ -10,11 +10,6 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Route::get('admin/dangnhap', 'UserController@getDangNhapAdmin');
 Route::post('admin/dangnhap', 'UserController@postDangNhapAdmin');
 Route::get('admin/logout', 'UserController@getDangXuatAdmin');
@@ -97,5 +92,13 @@ Route::group(['prefix' => 'admin', 'middleware' => 'adminLogin'], function () {
 });
 
 
+Route::get('/', 'PageController@trangChu');
+
 Route::get('trangchu', 'PageController@trangChu');
 Route::get('lienhe', 'PageController@lienHe');
+Route::get('loaitin/{id}/{tenKhongDau}.html', 'PageController@loaiTin');
+Route::get('tintuc/{id}/{tieuDeKhongDau}.html', 'PageController@tinTuc');
+
+Route::get('dangnhap', 'PageController@getDangNhap');
+Route::post('dangnhap', 'PageController@postDangNhap');
+Route::get('dangxuat', 'PageController@dangXuat');

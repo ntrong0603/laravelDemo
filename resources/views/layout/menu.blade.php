@@ -6,15 +6,16 @@
             Menu
         </li>
 
-        @foreach ($theloais as $theloai)
-        <li href="{{ $theloai->TenKhongDau  }}" class="list-group-item menu1">
-            {{ $theloai->Ten }}
+        @foreach ($theLoais as $theLoai)
+        @if (count($theLoai->loaiTin) > 0)
+        <li href="{{ $theLoai->TenKhongDau  }}" class="list-group-item menu1">
+            {{ $theLoai->Ten }}
         </li>
-        @if (count($theloai->loaiTin) > 0)
+
         <ul>
-            @foreach ($theloai->loaiTin as $loaitin)
+            @foreach ($theLoai->loaiTin as $loaiTin)
             <li class="list-group-item">
-                <a href="{{ $loaitin->TenKhongDau  }}">{{ $loaitin->Ten }}</a>
+                <a href="loaitin/{{ $loaiTin->id }}/{{ $loaiTin->TenKhongDau }}.html">{{ $loaiTin->Ten }}</a>
             </li>
             @endforeach
 

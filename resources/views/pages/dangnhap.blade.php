@@ -18,12 +18,16 @@
                     </div>
                     @endif
 
-                    @if (session('thongbao'))
+                    @if (session('loi'))
                     <div class="alert alert-danger">
+                        {{ session('loi') }}
+                    </div>
+                    @endif
+                    @if (session('thongbao'))
+                    <div class="alert alert-success">
                         {{ session('thongbao') }}
                     </div>
                     @endif
-
                     <form action="dangnhap" method="POST">
                         @csrf
                         <div>

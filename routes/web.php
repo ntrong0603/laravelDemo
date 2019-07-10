@@ -98,8 +98,14 @@ Route::get('trangchu', 'PageController@trangChu');
 Route::get('lienhe', 'PageController@lienHe');
 Route::get('loaitin/{id}/{tenKhongDau}.html', 'PageController@loaiTin');
 Route::get('tintuc/{id}/{tieuDeKhongDau}.html', 'PageController@tinTuc');
-Route::post('comment/{id}', "CommentController@postComment");
+Route::post('comment/{id}', 'CommentController@postComment');
+Route::get('nguoidung', 'PageController@getNguoiDung');
+Route::post('nguoidung', 'PageController@postNguoiDung');
 
 Route::get('dangnhap', 'PageController@getDangNhap');
 Route::post('dangnhap', 'PageController@postDangNhap');
 Route::get('dangxuat', 'PageController@dangXuat');
+Route::get('dangky', 'PageController@getDangKy');
+Route::post('dangky', 'PageController@postDangKy');
+
+Route::get('timkiem', 'PageController@timKiem');

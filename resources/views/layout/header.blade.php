@@ -23,11 +23,11 @@
                 </li>
             </ul>
 
-            <form class="navbar-form navbar-left" role="search">
+            <form action="timkiem" method="GET" class="navbar-form navbar-left" role="search">
                 <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Search">
+                    <input type="text" name="keySearch" class="form-control" placeholder="Search">
                 </div>
-                <button type="submit" class="btn btn-default">Submit</button>
+                <button type="submit" class="btn btn-default">Tim</button>
             </form>
             <ul class="nav navbar-nav pull-right">
                 @if (!isset($nguoiDung))
@@ -40,7 +40,7 @@
                 @else
 
                 <li>
-                    <a>
+                    <a href="nguoidung">
                         <span class="glyphicon glyphicon-user"></span>
                         {{ $nguoiDung->name }}
                     </a>
